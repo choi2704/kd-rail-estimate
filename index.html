@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123752">
+  <title>강동자바라 | 스텐 난간대 견적기</title>
+  <link rel="stylesheet" href="style.css?v=1.1.0">
+  <script src="app.js?v=1.1.0" defer></script>
+</head>
+<body>
+  <header class="masthead no-print">
+    <div class="head-inner">
+      <div class="brand"><span class="brand-mark">K</span><div><span class="brand-name">강동자바라</span><span class="brand-sub">스텐 난간대 견적 계산기</span></div></div>
+      <div class="head-right"><span class="chip">기본형 · 파이프 0.9T</span><span class="version">v1.1</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="intro no-print">
+      <div><div class="eyebrow">STAINLESS RAILING / ESTIMATE</div><h1>스텐 난간대 견적기</h1><p>길이를 <strong>1m 단위</strong>로 입력하면 단가와 기둥 추가 비용이 자동 계산됩니다.</p></div>
+      <div class="tip"><span>ℹ</span><div><b>견적 기준</b><br>기준가 37,000원(1000mm·SUS201) · 기둥 1개당 15,000원</div></div>
+    </div>
+
+    <div class="work-grid no-print">
+      <section class="card edit-card" aria-labelledby="inputTitle">
+        <div class="card-title"><h2 id="inputTitle">① 난간대 규격 입력</h2><span class="tag-blue">실시간 계산</span></div>
+        <div class="form-pad">
+          <div class="visual-box">
+            <div class="visual-head"><b>기본형 난간대</b><small>제공된 기본형 도면</small></div>
+            <img src="assets/기본형_참고도면.png" alt="50.8파이 상부 파이프, 38.1파이 하부 가로대, 25.4파이 외측 세로대, 19.1파이 내부 세로대가 있는 기본형 난간대 도면">
+            <div class="visual-bottom"><span>파이프 두께 <b>0.9T</b></span><span id="visualLength">계산 길이 <b>1m</b></span></div>
+          </div>
+
+          <div class="row-title"><span>01</span> 재질 및 높이</div>
+          <div class="field-grid">
+            <fieldset class="field-set"><legend>스테인리스 재질</legend><div class="segmented" id="materialGroup"><label><input type="radio" name="material" value="201" checked><span>SUS 201</span></label><label><input type="radio" name="material" value="304"><span>SUS 304</span></label></div></fieldset>
+            <fieldset class="field-set"><legend>난간대 높이</legend><div class="segmented" id="heightGroup"><label><input type="radio" name="height" value="1000" checked><span>1000mm</span></label><label><input type="radio" name="height" value="1200"><span>1200mm</span></label></div></fieldset>
+          </div>
+
+          <div class="row-title"><span>02</span> 길이 · 수량</div>
+          <div class="field-grid">
+            <div class="field"><label for="length">난간대 길이 <em>1m 단위</em></label><div class="stepper"><button type="button" data-step="length" data-delta="-1" aria-label="길이 1m 감소">−</button><input id="length" type="number" min="1" max="999" step="1" value="1" inputmode="numeric"><button type="button" data-step="length" data-delta="1" aria-label="길이 1m 증가">+</button><span class="suffix">m</span></div><div class="under-note">1m · 2m · 3m … 정수 길이만 계산</div></div>
+            <div class="field"><label for="qty">동일 규격 수량</label><div class="stepper"><button type="button" data-step="qty" data-delta="-1" aria-label="수량 1개 감소">−</button><input id="qty" type="number" min="1" max="999" step="1" value="1" inputmode="numeric"><button type="button" data-step="qty" data-delta="1" aria-label="수량 1개 증가">+</button><span class="suffix">개</span></div><div class="under-note">수량 변경 시 전체 합계 반영</div></div>
+          </div>
+
+          <div class="row-title"><span>03</span> 기둥 추가 <span class="sub-row">개당 +15,000원</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="ends">끝기둥 <em>추가 개수</em></label><div class="stepper"><button type="button" data-step="ends" data-delta="-1" aria-label="끝기둥 1개 감소">−</button><input id="ends" type="number" min="0" max="2" step="1" value="0" inputmode="numeric"><button type="button" data-step="ends" data-delta="1" aria-label="끝기둥 1개 증가">+</button><span class="suffix">개</span></div><div class="under-note">양끝이면 2개 선택</div></div>
+            <div class="field"><label for="middle">중간기둥 <em>추가 개수</em></label><div class="stepper"><button type="button" data-step="middle" data-delta="-1" aria-label="중간기둥 1개 감소">−</button><input id="middle" type="number" min="0" max="999" step="1" value="0" inputmode="numeric"><button type="button" data-step="middle" data-delta="1" aria-label="중간기둥 1개 증가">+</button><span class="suffix">개</span></div><div class="under-note">선택한 개수만큼 추가</div></div>
+          </div>
+          <div class="hint"><b>참고</b> 기둥은 자동 추가하지 않습니다. 끝기둥·중간기둥 수량을 직접 선택하세요. 본체 단가는 아래 단가표의 1m 기준 금액을 사용합니다.</div>
+
+          <div class="row-title"><span>04</span> 기타 정보 <span class="sub-row">선택사항</span></div>
+          <div class="field-grid extra-fields">
+            <div class="field"><label for="extraAmount">기타 추가금 <em>난간대 1개당</em></label><div class="money-input"><input id="extraAmount" type="number" min="0" max="100000000" step="1000" value="0" inputmode="numeric"><span>원</span></div></div>
+            <div class="field"><label for="name">현장·고객명</label><input id="name" class="plain-input" type="text" maxlength="100" placeholder="선택 입력"></div>
+          </div>
+          <div class="field"><label for="memo">견적 메모</label><input id="memo" class="plain-input" type="text" maxlength="200" placeholder="예: 현장 사이즈 확인 후 제작"></div>
+        </div>
+      </section>
+
+      <aside class="card calc-card" aria-label="견적 결과">
+        <div class="card-title"><h2>② 자동 견적 결과</h2><span class="live-indicator"><i></i> 자동 계산</span></div>
+        <div class="quote-body">
+          <div class="selection-pills"><span id="selectedMat">SUS 201</span><span id="selectedHeight">높이 1000mm</span><span>0.9T</span></div>
+          <div class="big-price"><div class="price-label">견적 합계 <small id="vatHint">부가세 미포함</small></div><div><strong id="finalTotal" aria-live="polite">37,000</strong><span>원</span></div></div>
+          <div class="line-items">
+            <div class="line"><span>1m 기준 기본 단가</span><strong id="unitPrice">37,000원</strong></div>
+            <div class="line"><span id="baseLabel">본체 1m × 37,000원</span><strong id="baseTotal">37,000원</strong></div>
+            <div class="line"><span id="columnLabel">기둥 추가 (0개 × 15,000원)</span><strong id="columnTotal">0원</strong></div>
+            <div class="line"><span>기타 추가금</span><strong id="extraTotal">0원</strong></div>
+            <div class="line dashed"><span>난간대 1개당</span><strong id="oneTotal">37,000원</strong></div>
+            <div class="line"><span id="qtyLabel">수량 1개 합계</span><strong id="supplyTotal">37,000원</strong></div>
+            <div class="line"><label class="vat-toggle"><input id="vatOn" type="checkbox"> 부가세 10% 추가</label><strong id="vatTotal">0원</strong></div>
+          </div>
+          <div class="total-line"><span>최종 합계</span><strong><span id="bottomTotal">37,000</span>원</strong></div>
+          <div class="action-buttons"><button type="button" id="addQuote" class="primary">+ 견적 목록에 추가</button><button type="button" id="resetForm" class="secondary">입력 초기화</button></div>
+          <p class="fineprint">※ 사진에서 확인된 기본 단가를 적용했습니다. 기본 단가의 부가세 포함 여부는 미확인으로, 필요 시 위 체크를 선택하세요. 배송·설치 비용은 별도입니다.</p>
+        </div>
+        <div class="rate-table-wrap"><h3>적용 단가표 <small>1m 기준 / 원</small></h3><table class="rate-table"><thead><tr><th>높이</th><th>SUS 201</th><th>SUS 304</th></tr></thead><tbody><tr><th>1000mm</th><td>37,000<br><small>기준가</small></td><td>47,000<br><small>+10,000원</small></td></tr><tr><th>1200mm</th><td>39,400<br><small>+2,400원</small></td><td>51,400<br><small>+14,400원</small></td></tr></tbody></table><p>끝·중간기둥: 재질·높이 구분 없이 1개당 15,000원</p></div>
+      </aside>
+    </div>
+
+    <section class="card quote-list" aria-labelledby="quoteListTitle">
+      <div class="card-title list-head"><div><h2 id="quoteListTitle">③ 견적 목록</h2><p>여러 규격을 추가하면 전체 금액이 자동 합산됩니다.</p></div><span class="item-count" id="listCount">0건</span></div>
+      <div class="list-tools no-print"><button type="button" id="copyAll" class="secondary" disabled>견적 내용 복사</button><button type="button" id="printQuotes" class="secondary" disabled>견적 인쇄</button><button type="button" id="clearList" class="danger" disabled>전체 삭제</button></div>
+      <div class="table-scroller"><table class="quote-table"><thead><tr><th>번호</th><th>규격 / 높이</th><th>길이</th><th>끝·중간기둥</th><th>수량</th><th>견적 금액</th><th class="no-print">관리</th></tr></thead><tbody id="quoteRows"><tr class="empty-row"><td colspan="7">견적을 추가하면 여기에 표시됩니다.</td></tr></tbody></table></div>
+      <div class="list-footer"><span>전체 견적 합계 <small id="listVatLabel">(각 견적에 선택한 부가세 적용)</small></span><strong><span id="listTotal">0</span>원</strong></div>
+      <div class="export-row no-print"><button type="button" id="exportData" class="text-btn">견적 목록 백업(JSON)</button><button type="button" id="importData" class="text-btn">백업 복원</button><input id="importFile" type="file" accept=".json,application/json" hidden></div>
+    </section>
+    <footer class="footer no-print">강동자바라 · 스텐 난간대 견적기 v1.1 <span>GitHub Pages에서 실행 가능 / 외부 API 연결 없음 / 견적 목록은 현재 브라우저에 저장</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
